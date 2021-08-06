@@ -59,4 +59,14 @@ export class AppComponent {
       }
     )
   }
+  deleteMovie = () => {
+    this.api.deleteMovie(this.selectedMovie.id).subscribe(
+      data => {
+        this.getMovies();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 }
