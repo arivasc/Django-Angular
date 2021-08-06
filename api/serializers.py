@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from .models import Movie
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class MovieSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
-
+        model = Movie
+        fields = ['id', 'title', 'desc', 'year']
