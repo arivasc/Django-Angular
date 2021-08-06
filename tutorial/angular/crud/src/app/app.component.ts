@@ -25,4 +25,7 @@ export class AppComponent {
     )
 
   }
+  movieClicked = (movie:any) => {
+    console.log(movie.id)
+  }
 }
