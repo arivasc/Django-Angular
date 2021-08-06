@@ -8,11 +8,13 @@ import { ApiService } from './api.service';
   providers: [ApiService],
 })
 export class AppComponent {
-  title = 'crud';
+  titlef = 'crud';
   movies = [{title: 'Titanic'}, {title:'avatar'}];
+  selectedMovie:any;
 
   constructor(private api:ApiService){
     this.getMovies();
+    this.selectedMovie = {id:-1,title:'',desc:'',year:0}
   }
   getMovies = () => {
     this.api.getAllMovies().subscribe(
@@ -26,6 +28,25 @@ export class AppComponent {
 
   }
   movieClicked = (movie:any) => {
-    console.log(movie.id)
+    console.log(movie.id);
+    this.api.getOneMovie(movie.id).subscribe(
+      data => {
+        this.selectedMovie = data;
+      },
+      error => {
+        console.log(error);
+      }
+
+    )
+  }
+  updateMovie = () => {
+    this.api.updateMovie(this.selectedMovie).subscribe(
+      data => {
+        this.selectedMovie = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
